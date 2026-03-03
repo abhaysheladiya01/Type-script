@@ -1,14 +1,13 @@
-const num1Element = document.getElementById('num1') as HTMLInputElement;
-const num2Element = document.getElementById('num2') as HTMLInputElement;
-const buttonElement = document.querySelector('button')!;
+import express from 'express';
+import bodyParser from 'body-parser';
 
-function add(num1: number, num2: number) {
-  return num1 + num2;
-}
+import todosRoutes from './routes/todos.js';
 
-buttonElement.addEventListener('click', ()=>{
-    const num1 = num1Element.value;
-    const num2 = num2Element.value;
-    const result = add(+num1, +num2);
-    console.log(result);
-})
+const app = express();
+
+app.use(bodyParser.json());
+
+app.use(todosRoutes);
+
+
+app.listen(3000);
